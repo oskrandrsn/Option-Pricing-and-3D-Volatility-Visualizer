@@ -51,7 +51,7 @@ for i in range(Number_Paths):
     ax0.plot(paths[i], color=colors[i], lw=1.2, alpha=0.6)
 ax0.set_xlabel("Time Step")
 ax0.set_ylabel("Stock Price")
-ax0.set_title("Risk-Neutral Simulation of Expected Stock Prices $E[S_t]$ given GBM Dynamics")
+ax0.set_title("Simulation of Expected Stock Prices $E[S_t]$ given GBM Dynamics")
 ax0.grid(True, linestyle='--', alpha=0.4)  
 
 ax1 = fig.add_subplot(gs[1], sharey=ax0)
