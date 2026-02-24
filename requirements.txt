@@ -1,4 +1,4 @@
-Requirements: 
+Requirements for code files: 
 - numpy
 - scipy
 - matplotlib
