@@ -1,4 +1,4 @@
-# Option Pricing and 3D Volatility Visualizer (IN PROGRESS) 
+# Option Pricing and 3D Volatility Visualizer (In Progress) 
 **By:** Oskar Andersen 
 
 
