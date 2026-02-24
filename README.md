@@ -91,5 +91,4 @@ Note:
 - $T$ — Option's Maturity
 
 
-<img width="900" height="800" alt="Simulations of Stock Paths by GBM Dynamics" src="https://github.com/user-attachments/assets/ec15263c-815e-4935-ae1b-9dd5de7ab623" />
 
