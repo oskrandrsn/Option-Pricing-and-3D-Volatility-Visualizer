@@ -28,7 +28,9 @@ As a final model for option pricing would be Asian and Barrier options with cent
 
 ## 2. European Options: Call and Put ##
 
-Under the Black-Scholes model a stock price $S_T$ follows the Geometric Brownian Motion (GBM) - a countinous time stochastic process with a drift and random component. A stock $S_t$ follows a GBM process given under the risk-netrual measure by:  $$dS_t = r S_t dt + \sigma S_t d W_t$$ 
+Under the Black-Scholes model a stock price $S_T$ follows the Geometric Brownian Motion (GBM) - a countinous time stochastic process with a drift and random component. A stock $S_t$ follows a GBM process given under the risk-netrual measure by:  
+
+$$dS_t = r S_t dt + \sigma S_t d W_t$$ 
 
 where: 
 
