@@ -37,19 +37,63 @@ Planned:
 
 ## 2. European Options: Call and Put ##
 
-Under the Black-Scholes model a stock price $S_T$ follows the Geometric Brownian Motion (GBM) - a countinous time stochastic process with a drift and random component. A stock $S_t$ follows a GBM process given under the risk-netrual measure by:  
+**Parameters**
 
-$$dS_t = r S_t dt + \sigma S_t d W_t$$ 
+- $S_0$ - Initial Stock Price at Time $t=0$  
+
+- $K$ - Strike Price
+
+- $r$ — Risk Free Rate (countinous compounding)
+
+- $q$ - Dividend Yield 
+
+- $\sigma$ — Volatility (standard deviation of returns)  
+
+- $N_{\text{Time}}$ — Number of time steps  
+
+- $N_{\text{Paths}}$ — Number of simulated paths  
+
+- $T$ — Option's Maturity
+
+
+**Black-Scholes Model**
+
+The Black-Scholes model (BS) is a mathematical framework for pricing European call and put options under the risk-netrual pricing measure. It assumes the underlying stock follows the Geometric Brownian Motion (GBM) dynamics with constant volatility and frictionless market condition.
+
+Assumption of the BS model includes: 
+- no arbitrage condition
+- constant risk free rate
+- constant volatility
+- log-normal asset price dynamics
+
+Closed form solution of the BS model is given by: 
+
+$d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}}$
+
+$d_2 = d_1 - \sigma \sqrt{T}$
+
+Let $\( N(\cdot) \)$ denote the cumulative distribution function (CDF) of the standard normal distribution.
+
+European Call: 
+$C = S_0 e^{-qT} N(d_1) - K e^{-rT} N(d_2)$
+
+European Put: 
+$P = K e^{-rT} N(-d_2) - S_0 e^{-qT} N(-d_1)$
+
+Put-Call Parity: 
+$C - P = S_0 e^{-qT} - K e^{-rT}$
+
+**Geometric Brownian Motion**
+
+Under the BS model a stock price $S_T$ follows the GBM dynamics - a countinous time stochastic process with a drift and random component. A stock $S_t$ follows a GBM process given under the risk-netrual measure by:  
+
+$$dS_t = (r - q) S_t dt + \sigma S_t d W_t$$ 
 
 where: 
 
-$r$ = risk free rate 
+$(r - q) S_t$ = drift 
 
-$r S_t$ = drift 
-
-$\sigma S_t$ = volatility/random component
-
-$W_t$ = standard Brownian Motion 
+$W_t$ = standard brownian motion 
 
 
 
@@ -63,32 +107,17 @@ The formula above is used to simulate possible stochastic paths of stock prices 
 
 Changing the parameters will generate all the possible paths of the stock starting from an initial stock price at time t=0. The right-hand side of the graph shows the empirical distribution of simulated terminal stock prices $S_T$. 
 
-Note:
+**Notes**
 
+Note:
 (1) Keeping 252 time steps so that it is more aligned with trading days. 
- 
+
 (2) Having a larger number of paths simulated will more closly align with the theoritical expected stock price as well as put and call prices (typically > 50,000 simulations is good enough)
 
 (3) Option maturity is measured in $T$ years. If an option matures in 120 days from now then write code 120/365, which let's Python calculate the option maturing in 120 days with 256 time steps. 
 
+Example graph of simulated stock paths: 
 
-**Model Parameters**
-
-- $S_0$ — Initial Stock Price at Time $t=0$  
-
-- $K$ = Strike Price
-
-- $r$ — Risk Free Rate 
-
-- $q$ = Dividend 
-
-- $\sigma$ — Volatility (standard deviation of returns)  
-
-- $N_{\text{Time}}$ — Number of time steps  
-
-- $N_{\text{Paths}}$ — Number of simulated paths  
-
-- $T$ — Option's Maturity
-
+<img width="1148" height="670" alt="Simulation of Stock Paths by GBM Dynamics " src="https://github.com/user-attachments/assets/636b7575-41f9-4a12-9727-3352d7c3def6" />
 
 
