@@ -25,6 +25,15 @@ To adress these limitation to Black-Scholes model I extended the project to usin
 
 As a final model for option pricing would be Asian and Barrier options with central idea on Monte Carlo simulations, before implementing a 3D volatility surface visualizer for analysis of implied volatility varies across strike prices and maturities. 
 
+Current Implementation: 
+- Black-Scholes model for European calls and puts
+- GBM simulation for stock paths
+
+Planned: 
+- Exotic options with Heston model
+- Barrier and Asian options
+- 3D volatility visualizer
+
 
 ## 2. European Options: Call and Put ##
 
