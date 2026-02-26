@@ -113,6 +113,7 @@ Changing the parameters will generate all the possible paths of the stock starti
 **Notes**
 
 Note:
+
 (1) Keeping 252 time steps so that it is more aligned with trading days. 
 
 (2) Having a larger number of paths simulated will more closly align with the theoritical expected stock price as well as put and call prices (typically > 50,000 simulations is good enough)
