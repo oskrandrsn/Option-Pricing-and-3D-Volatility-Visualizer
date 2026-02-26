@@ -14,7 +14,7 @@
 
 **5. Barrier Options**
 
-**5. Volatility Surface Visualizor 3D** 
+**6. Volatility Surface Visualizor 3D** 
 
 
 ## 1. Overview ## 
