@@ -129,3 +129,13 @@ Example graph of simulated stock paths:
 
 
 ## 3. Exotic Options ## 
+
+**Parameters** 
+
+**Exotic Options** 
+
+Exotic options are non-standard and complex financial derivatives with cutomized features. These contracts differ a lot from vanilla options (like the European options). Therofre, pricing exotic options require a more advanced models. 
+
+
+
+
