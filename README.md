@@ -125,3 +125,4 @@ Example graph of simulated stock paths:
 <img width="1148" height="670" alt="Simulation of Stock Paths by GBM Dynamics " src="https://github.com/user-attachments/assets/636b7575-41f9-4a12-9727-3352d7c3def6" />
 
 
+## 3. Exotic Options ## 
