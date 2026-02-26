@@ -10,7 +10,9 @@
 
 **3. Exotic Options**
 
-**4. Asian and Barrier Options**
+**4. Asian**
+
+**5. Barrier Options**
 
 **5. Volatility Surface Visualizor 3D** 
 
@@ -21,9 +23,9 @@ This is a very first project implemented in Python by me with focus on option pr
 
 This project explores option pricing with core objective to move beyond classical closed-form pricing methods and investigate more realistic models that better reflect the financial market and behavior. I began my implementing the famous Black-Scholes model for European pricing, using its analytical solution. The model is computationally efficient, but relies on perfect market conditions, consequently misaligning with how the real financial market behaves. Most notable incosistant assumptions are the constant volatility or log-normal asset dynamics, which may casue empirical problems like the volatility smile. 
 
-To adress these limitation to Black-Scholes model I extended the project to using stochastic volatility modelling for Exotic options, that do not have a analytical solutions, as they are rather more unique than European options in terms of payoffs and pricing. For this section I wanted to focus on Heston model, allowing volatility to evolve as a stochastic process and enabling a better fit. 
+To adress these limitation to Black-Scholes model I extended the project to using stochastic volatility modelling for Exotic options - including asian and barrier options - that do not have a analytical solutions, as they are rather more unique than European options in terms of payoffs and pricing. For this section I wanted to focus on Heston model, allowing volatility to evolve as a stochastic process and enabling a better fit. 
 
-As a final model for option pricing would be Asian and Barrier options with central idea on Monte Carlo simulations, before implementing a 3D volatility surface visualizer for analysis of implied volatility varies across strike prices and maturities. 
+As a final step I implemented a 3D volatility visualizer. 
 
 Current implementations: 
 - Black-Scholes model for European calls and puts
@@ -34,7 +36,8 @@ Currntly working on:
 - Heston model 
 
 Planned: 
-- Barrier and Asian options
+- Barrier
+- Asian options
 - 3D volatility visualizer
 
 
