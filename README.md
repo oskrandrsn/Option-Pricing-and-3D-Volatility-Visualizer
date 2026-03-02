@@ -23,7 +23,7 @@ This is a very first project implemented in Python by me with focus on option pr
 
 This project explores option pricing with core objective to move beyond classical closed-form pricing methods and investigate more realistic models that better reflect the financial market and behavior. I began my implementing the famous Black-Scholes model for European pricing, using its analytical solution. The model is computationally efficient, but relies on perfect market conditions, consequently misaligning with how the real financial market behaves. Most notable incosistant assumptions are the constant volatility or log-normal asset dynamics, which may casue empirical problems like the volatility smile. 
 
-To adress these limitation to Black-Scholes model I extended the project to using stochastic volatility modelling for Exotic options - including asian and barrier options - that do not have a analytical solutions, as they are rather more unique than European options in terms of payoffs and pricing. For this section I wanted to focus on Heston model, allowing volatility to evolve as a stochastic process and enabling a better fit. 
+To adress these limitation to Black-Scholes model I extended the project to using Least Square Monte Carlo simulation for  American options, where the Black-Scholes would not work. Further, stochastic volatility modelling for Exotic options - including asian and barrier options - that do not have a analytical solutions, as they are rather more unique than European options in terms of payoffs and pricing. For this section I wanted to focus on Heston model, allowing volatility to evolve as a stochastic process and enabling a better fit. 
 
 As a final step I implemented a 3D volatility visualizer. 
 
@@ -61,7 +61,9 @@ Planned:
 - $T$ — Option's Maturity
 
 
-**Black-Scholes Model**
+**European Options and Black-Scholes Model**
+
+European options are standard financial derivatives that allows the holder of the contract to either buy or sell an underlying asset at a strike price at a predetermined maturity date. 
 
 The Black-Scholes model (BS) is a mathematical framework for pricing European call and put options under the risk-netrual pricing measure. It assumes the underlying stock follows the Geometric Brownian Motion (GBM) dynamics with constant volatility and frictionless market condition.
 
@@ -73,13 +75,11 @@ Assumption of the BS model includes:
 
 Black–Scholes PDE for the option value $V(S,t)$:
 
-$\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0$
+$$\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0$$
 
 Closed form solution of the BS model is given by: 
 
-$d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}}$
-
-$d_2 = d_1 - \sigma \sqrt{T}$
+$$d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}}$$ , $$d_2 = d_1 - \sigma \sqrt{T}$$
 
 Let $\( N(\cdot) \)$ denote the cumulative distribution function (CDF) of the standard normal distribution.
 
@@ -133,13 +133,20 @@ Example graph of simulated stock paths:
 
 ## 3. American Options: Put and Call  ## 
 
-**Parameters** 
-
 **American Options** 
 
-American options are standard options similar to European contracts with the only difference where the contract holder can exercise the option at anytime prior to maturity of the contract. This allows for more flexibility and hedging strategies for investors, but in contrary come in higher price for the contract. 
+American options are standard financial derivatives where
 
-With 
+
+can exercise the option at anytime prior to maturity of the contract. This allows for more flexibility and hedging strategies for investors, but in contrary come in higher price for the contract. 
+
+With the same assumption that the underlying asset (stock) follows the GBM dynamics given by: 
+
+$$dS_t = (r - q) S_t dt + \sigma S_t d W_t$$  
+
+
+
+
 
 
 
