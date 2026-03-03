@@ -1,7 +1,6 @@
 # Option Pricing and 3D Volatility Visualizer (In Progress) 
 **By:** Oskar Andersen 
 
-
 ## Content ##
 
 **1. Overview** 
@@ -15,7 +14,6 @@
 **5. Barrier Options**
 
 **6. Volatility Surface Visualizor 3D** 
-
 
 ## 1. Overview ## 
 
@@ -31,7 +29,7 @@ Current implementations:
 - Black-Scholes model for European calls and puts
 - GBM simulation for stock paths
 
-Currntly working on: 
+Currently working on: 
 - American options 
 
 Planned: 
@@ -39,27 +37,7 @@ Planned:
 - Asian options
 - 3D volatility visualizer
 
-
 ## 2. European Options: Call and Put ##
-
-**Parameters**
-
-- $S_0$ - Initial Stock Price at Time $t=0$  
-
-- $K$ - Strike Price
-
-- $r$ — Risk Free Rate (countinous compounding)
-
-- $q$ - Dividend Yield 
-
-- $\sigma$ — Volatility (standard deviation of returns)  
-
-- $N_{\text{Time}}$ — Number of time steps  
-
-- $N_{\text{Paths}}$ — Number of simulated paths  
-
-- $T$ — Option's Maturity
-
 
 **European Options and Black-Scholes Model**
 
@@ -92,33 +70,62 @@ $P = K e^{-rT} N(-d_2) - S_0 e^{-qT} N(-d_1)$
 Put-Call Parity: 
 $C - P = S_0 e^{-qT} - K e^{-rT}$
 
+
 **Geometric Brownian Motion**
 
 Under the BS model a stock price $S_T$ follows the GBM dynamics - a countinous time stochastic process with a drift and random component. A stock $S_t$ follows a GBM process given under the risk-netrual measure by:  
 
+
 $$dS_t = (r - q) S_t dt + \sigma S_t d W_t$$ 
+
 
 where: 
 
-$(r - q) S_t$ = drift 
+$r$ = Risk Free Rate 
 
-$W_t$ = standard brownian motion 
+$q$ = Dividend Yield 
+
+$\sigma$ = Bolatility 
+
+$(r - q) S_t$ = Drift 
+
+$W_t$ = Standard Brownian Motion 
 
 
 
 The future possible prices of a stock that follows the GBM model can be modelled by the GBM stochastic differential process:  
-
 $$
 S_{t+\Delta t} = S_t \cdot \exp\Big((r - q - \frac{1}{2}\sigma^2)\Delta t + \sigma \sqrt{\Delta t} Z_t \Big)
 $$
 
 The formula above is used to simulate possible stochastic paths of stock prices under the risk neutral measure to ensure that discounted prices follow a martingale approach. 
 
-Changing the parameters will generate all the possible paths of the stock starting from an initial stock price at time t=0. The right-hand side of the graph shows the empirical distribution of simulated terminal stock prices $S_T$. 
 
-**Notes**
+**Model - european_options.py** 
 
-Note:
+The model uses the GBM dynamics for Monte Carlo simulation of simulated stock paths starting from an initial stock price $S_0$. It uses then BS model to price both European put and call options in addition to giving the values of Greeks, including Delta, Theta and Vega. 
+
+
+**Model's Parameters** 
+
+- $S_0$ - Initial Stock Price at Time $t=0$  
+
+- $K$ - Strike Price
+
+- $r$ — Risk Free Rate (countinous compounding)
+
+- $q$ - Dividend Yield 
+
+- $\sigma$ — Volatility (standard deviation of returns)  
+
+- $N_{\text{Time}}$ — Number of time steps  
+
+- $N_{\text{Paths}}$ — Number of simulated paths  
+
+- $T$ — Option's Maturity
+
+
+**Notes on the model**
 
 (1) Keeping 252 time steps so that it is more aligned with trading days. 
 
@@ -130,23 +137,41 @@ Example graph of simulated stock paths:
 
 <img width="1148" height="670" alt="Simulation of Stock Paths by GBM Dynamics " src="https://github.com/user-attachments/assets/636b7575-41f9-4a12-9727-3352d7c3def6" />
 
-
 ## 3. American Options: Put and Call  ## 
 
 **American Options** 
 
-American options are standard financial derivatives where
+American options are financial derivatives where the holder of the contract may exercise the option at any time up to and including the option's maturity. This early-exercise flexbility distinguishes American option from European options. 
 
-
-can exercise the option at anytime prior to maturity of the contract. This allows for more flexibility and hedging strategies for investors, but in contrary come in higher price for the contract. 
-
-With the same assumption that the underlying asset (stock) follows the GBM dynamics given by: 
+Under the standard financial assumption that the underlying asset (stock) follows the GBM dynamics under the risk-netrual measure given by: 
 
 $$dS_t = (r - q) S_t dt + \sigma S_t d W_t$$  
 
+where: 
+
+$r$ = Risk Free Rate 
+
+$q$ = Dividend Yield 
+
+$\sigma$ = Bolatility 
+
+$(r - q) S_t$ = Drift 
+
+$W_t$ = Standard Brownian Motion
+
+Since the early exercise can occur at any time until the maturity the financial valuation essentially becomes an optimal stopping problem where at each potential exercise date the investor would compare the immediate exercise payoff to the expected value of continuing to hold the option and exercise it at another optimal point in time. Generally, due to the early-exercise strategy, there is no closed form formula for pricing American options. 
+
+**An important expection is of an American call on non-dividend stock**, which is never optimal to exercise it early, hence the standard BS model applies. 
 
 
+**Least Square Monte Carlo (LSMC) Approach**
 
+The approach used for pricing American options is the Least Square Monte Carlo (LSMC), where Monte Carlo simulation is combined with Least Square regression. The core idea of this approach is for Monte Carlo to generate paths for the stock $S_t$ following the GBM dynamics. Following by the backward induction starting at maturity date, where for each discrete exercise date the simulation computes paths that are in the money and computes the countinous value of the option. If immediate exercise payoff is greater, the simulation will mark that path as exercised at that date. Finally, after accounting for all possible early exercises, the option price is computed as the average payoff across paths. 
+
+
+**Model - american_options.py**
+
+**Parameters** 
 
 
 
