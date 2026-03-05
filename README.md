@@ -111,7 +111,6 @@ $$S_{t+\Delta t} = S_t \cdot \exp\Big((r - q - \frac{1}{2}\sigma^2)\Delta t + \s
 - $T$ — Option's Maturity
 
 
-
 **Notes on the model**
 
 (1) Keeping 252 time steps so that it is more aligned with trading days. 
@@ -120,9 +119,6 @@ $$S_{t+\Delta t} = S_t \cdot \exp\Big((r - q - \frac{1}{2}\sigma^2)\Delta t + \s
 
 (3) Option maturity is measured in $T$ years. If an option matures in 120 days from now then write code 120/365, which let's Python calculate the option maturing in 120 days with 256 time steps. 
 
-Example graph of simulated stock paths: 
-
-<img width="1148" height="670" alt="Simulation of Stock Paths by GBM Dynamics " src="https://github.com/user-attachments/assets/636b7575-41f9-4a12-9727-3352d7c3def6" />
 
 ## 3. American Options: Put and Call  ## 
 
