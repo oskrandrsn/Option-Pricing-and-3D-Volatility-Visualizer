@@ -17,8 +17,6 @@
 
 ## 1. Overview ## 
 
-This is a very first project implemented in Python by me with focus on option pricing, as I am interested in derivative and asset pricing. I wanted to challenge myself and implement something interesting within my field of study which is quantitative finance and asset pricing. 
-
 This project explores option pricing with core objective to move beyond classical closed-form pricing methods and investigate more realistic models that better reflect the financial market and behavior. I began my implementing the famous Black-Scholes model for European pricing, using its analytical solution. The model is computationally efficient, but relies on perfect market conditions, consequently misaligning with how the real financial market behaves. Most notable incosistant assumptions are the constant volatility or log-normal asset dynamics, which may casue empirical problems like the volatility smile. 
 
 To adress these limitation to Black-Scholes model I extended the project to using Least Square Monte Carlo simulation for  American options, where the Black-Scholes would not work. Further, stochastic volatility modelling for Exotic options - including asian and barrier options - that do not have a analytical solutions, as they are rather more unique than European options in terms of payoffs and pricing. For this section I wanted to focus on Heston model, allowing volatility to evolve as a stochastic process and enabling a better fit. 
