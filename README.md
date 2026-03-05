@@ -94,7 +94,9 @@ $W_t$ = Standard Brownian Motion
 
 
 The future possible prices of a stock that follows the GBM model can be modelled by the GBM stochastic differential process:  
+
 $$S_{t+\Delta t} = S_t \cdot \exp\Big((r - q - \frac{1}{2}\sigma^2)\Delta t + \sigma \sqrt{\Delta t} Z_t \Big)$$
+
 
 **Model - european_options.py** 
 
