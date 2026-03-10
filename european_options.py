@@ -28,12 +28,12 @@ def get_model_parameters():
         "seed": 5000
     }
     
-    params["T"] = ((datetime.date(2026,6,10) - datetime.date.today()).days)/365
+    params["T"] = ((datetime.date(2026,6,10) - datetime.date.today()).days) / 365
 
     params["dt"] = params["T"] / params["N"]
 
     return params
-
+    
 # ==========================================================
 # GBM Simulation
 # ==========================================================
