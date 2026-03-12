@@ -6,21 +6,6 @@ This project explores option pricing with core objective to move beyond classica
 
 To adress these limitation to Black-Scholes model I extended the project to using Least Square Monte Carlo simulation for  American options, where the Black-Scholes would not work. Further, stochastic volatility modelling for Exotic options - including asian and barrier options - that do not have a analytical solutions, as they are rather more unique than European options in terms of payoffs and pricing. For this section I wanted to focus on Heston model, allowing volatility to evolve as a stochastic process and enabling a better fit. 
 
-As a final step I implemented a 3D volatility visualizer. 
-
-Current implementations: 
-- Black-Scholes model for European calls and puts
-- GBM simulation for stock paths
-
-Currently working on: 
-- American options with Least Square Monte Carlo
-- GBM Process 
-
-Planned: 
-- Barrier
-- Asian options
-- 3D volatility visualizer
-
 ## 2. European Options: Call and Put ##
 
 **Black-Scholes Model**
@@ -91,7 +76,7 @@ $$S_{t+\Delta t} = S_t \cdot \exp\Big((r - q - \frac{1}{2}\sigma^2)\Delta t + \s
 
 **American Options** 
 
-American options are financial derivatives where the holder of the contract may exercise the option at any time up to and including the option's maturity. This early-exercise flexbility distinguishes American option from European options. 
+American options are financial derivatives where the holder of the contract may exercise the option at any time up to and  on the option's maturity. This early-exercise flexbility distinguishes American option from European options. 
 
 Under the standard financial assumption that the underlying asset (stock) follows the GBM dynamics under the risk-netrual measure given by: 
 
@@ -103,25 +88,64 @@ $r$ = Risk Free Rate
 
 $q$ = Dividend Yield 
 
-$\sigma$ = Bolatility 
+$\sigma$ = Volatility 
 
 $(r - q) S_t$ = Drift 
 
 $W_t$ = Standard Brownian Motion
 
-Since the early exercise can occur at any time until the maturity the financial valuation essentially becomes an optimal stopping problem where at each potential exercise date the investor would compare the immediate exercise payoff to the expected value of continuing to hold the option and exercise it at another optimal point in time. Generally, due to the early-exercise strategy, there is no closed form formula for pricing American options. 
+The financial valuation essentially becomes an optimal stopping problem where at each potential exercise date the investor would compare the immediate exercise payoff to the expected value of continuing to hold the option and exercise it at another optimal point in time. 
 
 **An important expection is of an American call on non-dividend stock**, which is never optimal to exercise it early, hence the standard BS model applies. 
 
 
 **Least Square Monte Carlo (LSMC) Approach**
 
-The approach used for pricing American options is the Least Square Monte Carlo (LSMC), where Monte Carlo simulation is combined with Least Square regression. The core idea of this approach is for Monte Carlo to generate paths for the stock $S_t$ following the GBM dynamics. Following by the backward induction starting at maturity date, where for each discrete exercise date the simulation computes paths that are in the money and computes the countinous value of the option. If immediate exercise payoff is greater, the simulation will mark that path as exercised at that date. Finally, after accounting for all possible early exercises, the option price is computed as the average payoff across paths. 
+The approach used for pricing American options is the Least Square Monte Carlo (LSMC), where Monte Carlo simulation is combined with Least Square regression. The core idea of this approach is for Monte Carlo to generate paths for the stock $S_t$ following the GBM dynamics. Following by the backward induction starting at maturity date, where for each discrete exercise date the simulation computes paths that are in the money and computes the countinous value of the option. If immediate exercise payoff is greater, the simulation will mark that path as exercised at that date. Finally, after accounting for all possible early exercises, the option price is computed as the average payoff across pricpaths. 
 
 
-**Model - american_options.py**
+**Notes on the model** 
 
-**Parameters** 
+(1) It is important to put inside the parameter "option_type" which type it is (call/put) 
+
+(2) The model generates the *estimated* price of the American option contract, along with two graphs: GBM stock simulations and exercise boundary visualisation of the contract. 
+
+
+## 4. Asian Options ##
+
+**Bermudian Asian Options** 
+
+Asian options - often referred to as average options - are a part of exotic options types. The payoff given to the holder of the contract is based on the average price of the underlying asset for the whole duration of the contract. There are two types of Asian options: American and Bermudian options. American types allow for early exercise and Bermudian exercise only at the maturity of the contract. 
+
+The payoff then is given by: 
+
+$$
+\pi(\bar{S}) = \max[\bar{S}-K,0]
+$$ 
+
+, where $\bar{S}$ represente the the average stock price over the duration of the contract. 
+
+
+The average price of the option is calculated in two different ways: the arthimetic average and geometric average. The arthimetic average takes the sum of all the stock prices divided by the number of observations of the stock path. The geometric average is calculated by the integral of the sum of all stock observation prices.  
+
+The artihmetic average: 
+
+$$
+\bar{S} = \frac{1}{n}\sum_{i=1}^{n} S_{t_i}
+$$
+
+The geometric average is given by: 
+
+$$
+G = \left(\prod_{i=1}^{n} S_{t_i}\right)^{\frac{1}{n}}
+$$
+
+
+**Asian Options Prices**
+
+
+
+
 
 
 
