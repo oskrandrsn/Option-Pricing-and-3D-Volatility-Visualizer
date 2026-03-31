@@ -88,8 +88,8 @@ where:
 
 - \(r\) = risk-free interest rate  
 - \(q\) = dividend yield  
-- \(\sigma\) = volatility  
-- \(W_t\) = standard Brownian motion  
+- $(\sigma\)$ = volatility  
+- $(W_t\)$ = standard Brownian motion  
 
 The discrete-time representation used for simulations is:
 
@@ -97,7 +97,7 @@ $$
 S_{t+\Delta t} = S_t e^{(r - q - \frac{1}{2}\sigma^2)\Delta t + \sigma\sqrt{\Delta t}Z_t}
 $$
 
-where \(Z_t \sim N(0,1)\).
+where $(Z_t \sim N(0,1)\)$.
 
 ---
 
@@ -116,8 +116,8 @@ The script simulates many possible stock price paths using the Geometric Brownia
 3. Monte Carlo Payoff Calculation
 For each simulated path, the terminal stock price \(S_T\) is used to compute the option payoff:
 
-- Call: \(\max(S_T - K,0)\)  
-- Put: \(\max(K - S_T,0)\)
+- Call: $\max(S_T - K,0)\$  
+- Put: $\max(K - S_T,0)\$
 
 The option price is then estimated as the **discounted average payoff across all simulated paths**.
 
@@ -148,8 +148,8 @@ where:
 
 - \(r\) = risk-free interest rate  
 - \(q\) = dividend yield  
-- \(\sigma\) = volatility of the underlying asset  
-- \(W_t\) = standard Brownian motion  
+- $(\sigma\)$ = volatility of the underlying asset  
+- $(W_t\)$ = standard Brownian motion  
 
 At each potential exercise time, the investor compares:
 
@@ -195,8 +195,8 @@ The American option price is estimated as the **average discounted payoff across
 5. Visualization
 The script produces two visual outputs:
 
-- ** GBM stock path simulations ** showing the possible price trajectories of the underlying asset  
-- ** Early exercise boundary visualization **, illustrating where early exercise occurs across the simulated paths
+- **GBM stock path simulations** showing the possible price trajectories of the underlying asset  
+- **Early exercise boundary visualization**, illustrating where early exercise occurs across the simulated paths
 
 
 ## 4. Asian Options
@@ -217,8 +217,8 @@ $$
 
 where:
 
-- \( \bar{S} \) = average price of the underlying asset  
-- \( K \) = strike price
+- $( \bar{S} \)$ = average price of the underlying asset  
+- $( K \)$ = strike price
 
 ---
 
@@ -234,8 +234,8 @@ where:
 
 - \( r \) = risk-free interest rate  
 - \( q \) = dividend yield  
-- \( \sigma \) = volatility  
-- \( Z_t \sim N(0,1) \)
+- $( \sigma \)$ = volatility  
+- $( Z_t \sim N(0,1) \)$
 
 ---
 
