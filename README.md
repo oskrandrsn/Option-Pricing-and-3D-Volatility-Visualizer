@@ -32,7 +32,7 @@ Key assumptions of the Black–Scholes model include:
 
 **Black–Scholes Partial Differential Equation**
 
-The value of an option \(V(S,t)\) satisfies the Black–Scholes partial differential equation:
+The value of an option $V(S,t)$ satisfies the Black–Scholes partial differential equation:
 
 $$
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - rV = 0
